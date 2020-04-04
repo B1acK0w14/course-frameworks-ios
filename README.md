@@ -1,4 +1,4 @@
-# Course for Frameworks on iOS 🍎 🎮 👽
+# Course for Frameworks on iOS 🍎
 Simple App for apply some iOS frameworks.
 
 ### Pre-requirements   📋
