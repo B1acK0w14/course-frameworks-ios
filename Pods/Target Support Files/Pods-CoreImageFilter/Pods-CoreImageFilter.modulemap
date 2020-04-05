@@ -1,0 +1,6 @@
+module Pods_CoreImageFilter {
+  umbrella header "Pods-CoreImageFilter-umbrella.h"
+
+  export *
+  module * { export * }
+}
