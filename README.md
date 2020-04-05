@@ -1,5 +1,5 @@
 # Course for Frameworks on iOS 🍎
-Simple App for apply some iOS frameworks.
+Simple App for apply some iOS frameworks with views programmatically.
 
 ### Pre-requirements   📋
 * iOS 10+
