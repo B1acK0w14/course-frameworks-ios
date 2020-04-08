@@ -1,0 +1,6 @@
+module Pods_SpeechExample {
+  umbrella header "Pods-SpeechExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
