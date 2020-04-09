@@ -19,7 +19,8 @@ class SpeechExampleViewController: UIViewController {
     
     let speechRec = SFSpeechRecognizer(locale: Locale.current)
     var buffRecognizer: SFSpeechAudioBufferRecognitionRequest?
-    var voiceProcessor = AVAudioEngine()
+    var audioProcessor = AVAudioEngine()
+    var voiceRecognizer: SFSpeechRecognitionTask?
 
     //MARK: - Init
     init() {
@@ -46,7 +47,7 @@ class SpeechExampleViewController: UIViewController {
             case .restricted:
                 enableButton = false
             @unknown default:
-                fatalError()
+                fatalError("ERROR!")
             }
             
             OperationQueue.main.addOperation {
@@ -62,14 +63,65 @@ class SpeechExampleViewController: UIViewController {
     
     //MARK: - Functions
     func startRecording() {
+        //ANNOTATION - For recording voice
+        if voiceRecognizer != nil {
+            voiceRecognizer?.cancel()
+            voiceRecognizer = nil
+        }
+        
+        //ANNOTATION: - Create session of audio
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.record)
+            try audioSession.setMode(.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {
+            fatalError("ERROR!")
+        }
+        
+        buffRecognizer = SFSpeechAudioBufferRecognitionRequest()
+        let record = audioProcessor.inputNode
+        guard let recognizer = buffRecognizer else {fatalError("ERROR!")}
+        recognizer.shouldReportPartialResults = true
+        
+        //ANNOTATION: - If recognizing data, need to process
+        voiceRecognizer = speechRec?.recognitionTask(with: recognizer, resultHandler: { (result, error) in
+            var finish = false
             
+            if result != nil {
+                self.speechExampleView.speechExampleTextView.text = result?.bestTranscription.formattedString
+                finish = (result?.isFinal)!
+            }
+            
+            if (error != nil) || finish {
+                self.audioProcessor.stop()
+                record.removeTap(onBus: 0)
+                self.buffRecognizer = nil
+                self.voiceRecognizer = nil
+                self.speechExampleView.speechExampleButton.isEnabled = true
+            }
+        })
+        
+        //ANNOTATION: - Processing audio buffer
+        let recording = record.outputFormat(forBus: 0)
+        record.installTap(onBus: 0, bufferSize: 1024, format: recording) { (buffer, when) in
+            self.buffRecognizer?.append(buffer)
+        }
+        
+        //ANNOTATION: - Start processing audio
+        audioProcessor.prepare()
+        do {
+            try audioProcessor.start()
+        } catch {
+            fatalError("ERROR!")
+        }
     }
 }
 
 extension SpeechExampleViewController: SpeechExampleDelegate {
     func startRecognizeVoice() {
-        if voiceProcessor.isRunning {
-            voiceProcessor.stop()
+        if audioProcessor.isRunning {
+            audioProcessor.stop()
             buffRecognizer?.endAudio()
             speechExampleView.speechExampleButton.isEnabled = false
             speechExampleView.speechExampleButton.setTitle("Start", for: .normal)

@@ -56,5 +56,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>SpeechExample wants to access your microphone</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>SpeechExample wants to record your voice</string>
 </dict>
 </plist>
