@@ -18,3 +18,11 @@ target 'SpeechExample' do
   general_pods
   project 'SpeechExample/SpeechExample.xcodeproj'
 end
+
+target 'KitDynamic' do
+  # Pods for SpeechExample
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  general_pods
+  project 'KitDynamic/KitDynamic.xcodeproj'
+end

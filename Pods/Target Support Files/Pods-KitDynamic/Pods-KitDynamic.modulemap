@@ -1,0 +1,6 @@
+framework module Pods_KitDynamic {
+  umbrella header "Pods-KitDynamic-umbrella.h"
+
+  export *
+  module * { export * }
+}
