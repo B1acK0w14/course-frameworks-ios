@@ -26,3 +26,10 @@ target 'KitDynamic' do
   general_pods
   project 'KitDynamic/KitDynamic.xcodeproj'
 end
+
+target 'AlamofireExample' do
+  # Pods for SpeechExample
+  general_pods
+  pod 'Alamofire'
+  project 'AlamofireExample/AlamofireExample.xcodeproj'
+end
