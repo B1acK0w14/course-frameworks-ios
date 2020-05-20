@@ -1,0 +1,6 @@
+module Pods_ARCExample {
+  umbrella header "Pods-ARCExample-umbrella.h"
+
+  export *
+  module * { export * }
+}

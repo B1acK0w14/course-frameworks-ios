@@ -1,7 +1,7 @@
 workspace 'FrameworkiOS'
 
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '10.0'
 
 def general_pods
   pod 'SnapKit'
@@ -32,4 +32,10 @@ target 'AlamofireExample' do
   general_pods
   pod 'Alamofire'
   project 'AlamofireExample/AlamofireExample.xcodeproj'
+end
+
+target 'ARCExample' do
+  # Pods for SpeechExample
+  general_pods
+  project 'ARCExample/ARCExample.xcodeproj'
 end

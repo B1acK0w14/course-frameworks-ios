@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ARCExample/ARCExample.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:AlamofireExample/AlamofireExample.xcodeproj">
    </FileRef>
    <FileRef
