@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CGAffineTransform/CGAffineTransform.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ARCExample/ARCExample.xcodeproj">
    </FileRef>
    <FileRef
