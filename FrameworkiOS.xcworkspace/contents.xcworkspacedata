@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:DesignPatterns/DesignPatterns.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:CGAffineTransform/CGAffineTransform.xcodeproj">
    </FileRef>
    <FileRef
